@@ -1,0 +1,15 @@
+spring:
+  application:
+    name:library-portal
+  datasource:
+    url: jdbc:mysql://localhost:3306/library?createDatabaseIfNotExist=true
+    username: root
+    password: hpone@MySQL12
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+server:
+  port:8082
