@@ -14,10 +14,10 @@ public class LibraryAccountServiceImpl implements LibraryAccountService{
     }
 
     @Override
-    public LibraryAccount createAccount(String studentId) {
+    public LibraryAccount createAccount(LibraryAccount account) {
 
         LibraryAccount newAccount = new LibraryAccount();
-        newAccount.setStudentId(studentId);
+        newAccount.setStudentId(account.getStudentId());
         newAccount.setPin("000000");
         newAccount.setUpdated(false);
         return libraryAccountRepository.save(newAccount);
