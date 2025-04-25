@@ -1,6 +1,6 @@
 spring:
   application:
-    name:library-portal
+    name: library-portal
   datasource:
     url: jdbc:mysql://localhost:3306/library?createDatabaseIfNotExist=true
     username: root
@@ -12,4 +12,4 @@ spring:
     show-sql: true
 
 server:
-  port:8082
+  port: 8082
