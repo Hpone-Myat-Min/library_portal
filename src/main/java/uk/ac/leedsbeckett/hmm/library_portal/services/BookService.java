@@ -7,8 +7,8 @@ import java.util.List;
 public interface BookService {
 
     Book addBook(Book book);
-    Book borrowBook(String bookIsbn);
-    Book returnBook(String bookIsbn);
+    Boolean borrowBook(String bookIsbn);
+    Boolean returnBook(String bookIsbn);
     List<Book> getBooks();
 
 }

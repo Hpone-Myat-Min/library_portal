@@ -31,15 +31,15 @@ public class BookController {
     }
 
     @PutMapping("/borrow/{bookIsbn}")
-    public ResponseEntity<Book> borrowBook(@PathVariable String bookIsbn) {
-        Book borrowingBook = bookService.borrowBook(bookIsbn);
-        return new ResponseEntity<>( borrowingBook,HttpStatus.OK);
+    public ResponseEntity<Boolean> borrowBook(@PathVariable String bookIsbn) {
+        Boolean hasBorrowedBook = bookService.borrowBook(bookIsbn);
+        return new ResponseEntity<>( hasBorrowedBook,HttpStatus.OK);
     }
 
     @PutMapping("/return/{bookIsbn}")
-    public ResponseEntity<Book> returnBook(@PathVariable String bookIsbn) {
-        Book returningBook = bookService.returnBook(bookIsbn);
-        return new ResponseEntity<>( returningBook,HttpStatus.OK);
+    public ResponseEntity<Boolean> returnBook(@PathVariable String bookIsbn) {
+        Boolean hasReturnedBook = bookService.returnBook(bookIsbn);
+        return new ResponseEntity<>( hasReturnedBook,HttpStatus.OK);
     }
 
 }

@@ -27,11 +27,12 @@ public class LibraryAccountServiceImpl implements LibraryAccountService{
     public LibraryAccount updateAccount(String studentId, LibraryAccount updatedAccount) {
 
         LibraryAccount currentAccount = libraryAccountRepository.findByStudentId(studentId).orElse(null);
-        if ( currentAccount != null ) {
+        if ( currentAccount == null ) {
             throw new RuntimeException("Library account with id " + studentId + " not found.");
         }
 
         currentAccount.setPin(updatedAccount.getPin());
+        currentAccount.setUpdated(true);
         return libraryAccountRepository.save(currentAccount);
     }
 
