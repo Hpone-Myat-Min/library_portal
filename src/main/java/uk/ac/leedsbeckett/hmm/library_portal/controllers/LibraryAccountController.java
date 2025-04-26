@@ -16,9 +16,21 @@ public class LibraryAccountController {
         this.libraryAccountService = libraryAccountService;
     }
 
+    @PostMapping("/login/student")
+    public ResponseEntity<LibraryAccount> loginAccount(@RequestParam String studentId, @RequestParam String pin) {
+        LibraryAccount newUser = libraryAccountService.loginAccount(studentId, pin);
+        return new ResponseEntity<>(newUser, HttpStatus.OK);
+    }
+
+    @PostMapping("/login/admin/{pin}")
+    public ResponseEntity<LibraryAccount> loginAdmin(@RequestParam String pin) {
+        LibraryAccount adminAccount = libraryAccountService.loginAdmin(pin);
+        return new ResponseEntity<>(adminAccount, HttpStatus.OK);
+    }
+
     @PostMapping("/create")
-    public ResponseEntity<LibraryAccount> createAccount(@RequestBody LibraryAccount account) {
-        LibraryAccount newAccount = libraryAccountService.createAccount(account);
+    public ResponseEntity<LibraryAccount> createAccount(@RequestBody LibraryAccount libraryAccount) {
+        LibraryAccount newAccount = libraryAccountService.createAccount(libraryAccount);
         return new ResponseEntity<>(newAccount, HttpStatus.CREATED);
     }
 

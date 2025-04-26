@@ -14,10 +14,28 @@ public class LibraryAccountServiceImpl implements LibraryAccountService{
     }
 
     @Override
-    public LibraryAccount createAccount(LibraryAccount account) {
+    public LibraryAccount loginAccount(String studentId, String pin) {
+        LibraryAccount libraryAccount = libraryAccountRepository.findByStudentId(studentId).orElseThrow(() -> new RuntimeException("Library Account not found with studentId: " + studentId));
+        if (!libraryAccount.getPin().equals(pin)) {
+            throw new RuntimeException("Invalid username or password");
+        }
+        return libraryAccount;
+    }
+
+    @Override
+    public LibraryAccount loginAdmin(String pin) {
+        LibraryAccount libraryAccount = libraryAccountRepository.findByStudentId("admin").orElseThrow(() -> new RuntimeException("Admin account not found"));
+        if (!libraryAccount.getPin().equals(pin)) {
+            throw new RuntimeException("Invalid pin number");
+        }
+        return libraryAccount;
+    }
+
+    @Override
+    public LibraryAccount createAccount(LibraryAccount libraryAccount) {
 
         LibraryAccount newAccount = new LibraryAccount();
-        newAccount.setStudentId(account.getStudentId());
+        newAccount.setStudentId(libraryAccount.getStudentId());
         newAccount.setPin("000000");
         newAccount.setUpdated(false);
         return libraryAccountRepository.save(newAccount);
