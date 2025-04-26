@@ -1,23 +1,30 @@
 package uk.ac.leedsbeckett.hmm.library_portal.services;
 
+import org.springframework.stereotype.Service;
 import uk.ac.leedsbeckett.hmm.library_portal.entities.Book;
+import uk.ac.leedsbeckett.hmm.library_portal.entities.FinanceAccount;
+import uk.ac.leedsbeckett.hmm.library_portal.entities.Fine;
 import uk.ac.leedsbeckett.hmm.library_portal.entities.Transaction;
 import uk.ac.leedsbeckett.hmm.library_portal.repositories.BookRepository;
 import uk.ac.leedsbeckett.hmm.library_portal.repositories.TransactionRepository;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class TransactionServiceImpl implements TransactionService{
 
     private final TransactionRepository transactionRepository;
     private final BookRepository bookRepository;
+    private final IntegrationService integrationService;
 
-    public TransactionServiceImpl( TransactionRepository transactionRepository, BookRepository bookRepository ) {
+    public TransactionServiceImpl( TransactionRepository transactionRepository, BookRepository bookRepository, IntegrationService integrationService ) {
         this.transactionRepository = transactionRepository;
         this.bookRepository = bookRepository;
+        this.integrationService = integrationService;
     }
 
     @Override
@@ -50,7 +57,20 @@ public class TransactionServiceImpl implements TransactionService{
         }
 
         if(LocalDate.now().isAfter(studentTransaction.getDueDate())) {
-            // ISSUE FINE
+
+            FinanceAccount financeAccount = integrationService.getFinanceAccount(studentId);
+
+            int overdueDays = (int) ChronoUnit.DAYS.between(studentTransaction.getDueDate(), LocalDate.now());
+            Double fineAmount = 0.5 * overdueDays;
+
+            Fine libraryFine = new Fine();
+            libraryFine.setAmount(fineAmount);
+            libraryFine.setDueDate(LocalDate.now().plusDays(14));
+            libraryFine.setType("LIBRARY_FINE");
+            libraryFine.setAccount(financeAccount);
+
+            integrationService.createLibraryFineInvoice(libraryFine);
+
         }
 
         studentTransaction.setDateReturned(LocalDate.now());
@@ -63,8 +83,8 @@ public class TransactionServiceImpl implements TransactionService{
     }
 
     @Override
-    public Optional<Transaction> getTransaction(Long transactionId) {
-        return transactionRepository.findById(transactionId);
+    public Transaction getTransaction(Long transactionId) {
+        return transactionRepository.findById(transactionId).orElseThrow(() -> new RuntimeException("Transaction not found"));
     }
 
     @Override
