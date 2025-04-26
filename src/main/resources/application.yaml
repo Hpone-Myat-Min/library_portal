@@ -2,7 +2,7 @@ spring:
   application:
     name: library-portal
   datasource:
-    url: jdbc:mysql://localhost:3306/library?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/librarydb?createDatabaseIfNotExist=true
     username: root
     password: hpone@MySQL12
 
