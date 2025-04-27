@@ -31,7 +31,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 throw new Error("Failed to borrow book. Book may not exist or no copies available.");
             }
 
-            localStorage.setItem("borrowIsbn", isbn);
+            const transaction = await res.json();
+
+            const message = `You have borrowed ${transaction.book.title} until ${transaction.dueDate}`;
+            localStorage.setItem("message", message);
+
+            // localStorage.setItem("borrowIsbn", isbn);
             window.location.href = "myaccount.html"
 
             // document.getElementById("message").textContent = "Book borrowed successfully!";
