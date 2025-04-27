@@ -49,7 +49,8 @@ public class TransactionServiceImpl implements TransactionService{
     }
 
     @Override
-    public Transaction returnBook(String bookIsbn, String studentId) {
+    public Fine returnBook(String bookIsbn, String studentId) {
+        Fine libraryFine = new Fine();
         Book book = bookRepository.findById(bookIsbn).orElseThrow(() -> new RuntimeException("Book not found"));
         Transaction studentTransaction = transactionRepository.findByBook_IsbnAndStudentIdAndDateReturnedIsNull(bookIsbn, studentId);
         if (studentTransaction == null) {
@@ -63,7 +64,6 @@ public class TransactionServiceImpl implements TransactionService{
             int overdueDays = (int) ChronoUnit.DAYS.between(studentTransaction.getDueDate(), LocalDate.now());
             Double fineAmount = 0.5 * overdueDays;
 
-            Fine libraryFine = new Fine();
             libraryFine.setAmount(fineAmount);
             libraryFine.setDueDate(LocalDate.now().plusDays(14));
             libraryFine.setType("LIBRARY_FINE");
@@ -79,7 +79,7 @@ public class TransactionServiceImpl implements TransactionService{
         book.setCopies(book.getCopies() + 1);
         bookRepository.save(book);
 
-        return studentTransaction;
+        return libraryFine;
     }
 
     @Override

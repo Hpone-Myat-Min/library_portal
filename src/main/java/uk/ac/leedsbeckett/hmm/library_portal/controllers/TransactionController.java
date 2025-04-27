@@ -3,6 +3,7 @@ package uk.ac.leedsbeckett.hmm.library_portal.controllers;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import uk.ac.leedsbeckett.hmm.library_portal.entities.Fine;
 import uk.ac.leedsbeckett.hmm.library_portal.entities.Transaction;
 import uk.ac.leedsbeckett.hmm.library_portal.services.TransactionService;
 
@@ -25,9 +26,9 @@ public class TransactionController {
     }
 
     @PutMapping("{studentId}/return/{bookIsbn}")
-    public ResponseEntity<Transaction> returnBook(@PathVariable String studentId, @PathVariable String bookIsbn) {
-        Transaction returnTransaction = transactionService.returnBook(bookIsbn, studentId);
-        return new ResponseEntity<>( returnTransaction, HttpStatus.OK);
+    public ResponseEntity<Fine> returnBook(@PathVariable String studentId, @PathVariable String bookIsbn) {
+        Fine fine = transactionService.returnBook(bookIsbn, studentId);
+        return new ResponseEntity<>(fine, HttpStatus.OK);
     }
 
     @GetMapping("/transaction/{transactionId}")
