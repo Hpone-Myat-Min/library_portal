@@ -35,12 +35,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if(invoice!=null){
                 const message = `You have returned the book successfully. You have been fined ${invoice.amount}. Please pay at the payment portal using the reference: ${invoice.reference}`;
-                localStorage.setItem("returnMessage", message);
+                localStorage.setItem("message", message);
 
             }
             else{
                 const message = `You have returned the book successfully.`;
-                localStorage.setItem("returnMessage", message);
+                localStorage.setItem("message", message);
             }
 
             window.location.href = "myaccount.html";
