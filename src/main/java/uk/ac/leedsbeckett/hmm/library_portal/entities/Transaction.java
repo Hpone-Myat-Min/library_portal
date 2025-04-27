@@ -17,10 +17,10 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "book_isbn")
     @EqualsAndHashCode.Exclude
-    @JsonIgnore
+//    @JsonIgnore
     @ToString.Exclude
     private Book book;
 
