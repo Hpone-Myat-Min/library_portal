@@ -3,6 +3,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uk.ac.leedsbeckett.hmm.library_portal.entities.Book;
+import uk.ac.leedsbeckett.hmm.library_portal.entities.LibraryAccount;
 import uk.ac.leedsbeckett.hmm.library_portal.entities.Transaction;
 import uk.ac.leedsbeckett.hmm.library_portal.services.BookService;
 import uk.ac.leedsbeckett.hmm.library_portal.services.LibraryAccountService;
