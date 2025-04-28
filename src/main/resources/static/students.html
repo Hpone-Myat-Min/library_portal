@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script defer src="js/students.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 2rem;
+            background-color: #f5f5f5;
+        }
+        nav {
+            margin-bottom: 2rem;
+        }
+        nav a {
+            margin-right: 1rem;
+            text-decoration: none;
+            color: #007bff;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+        th, td {
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #f0f0f0;
+        }
+        #message {
+            text-align: center;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="books.html">Books</a>
+        <a href="students.html">Students</a>
+        <a href="current-loans.html">Current Loans</a>
+        <a href="overdues.html">Overdue Books</a>
+        <a href="add-book.html">Add Book</a>
+        <a href="#" onclick="signOut()">Sign Out</a>
+    </nav>
+
+
+    <main>
+        <h2>Students</h2>
+
+        <table id="studentsTable">
+            <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Total Loans</th>
+                <th>Overdues</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        <p id="message"></p>
+    </main>
+
+</body>
+</html>
