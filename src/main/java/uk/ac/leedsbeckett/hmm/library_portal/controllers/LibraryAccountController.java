@@ -22,7 +22,7 @@ public class LibraryAccountController {
         return new ResponseEntity<>(newUser, HttpStatus.OK);
     }
 
-    @PostMapping("/login/admin/{pin}")
+    @PostMapping("/login/admin")
     public ResponseEntity<LibraryAccount> loginAdmin(@RequestParam String pin) {
         LibraryAccount adminAccount = libraryAccountService.loginAdmin(pin);
         return new ResponseEntity<>(adminAccount, HttpStatus.OK);

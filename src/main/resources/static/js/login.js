@@ -32,7 +32,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
 
         // Redirect based on user type
         if (studentId === "admin") {
-            window.location.href = "admin-books.html";
+            window.location.href = "books.html";
         } else {
             if (pin === "000000") {
                 window.location.href = "updatePin.html";
