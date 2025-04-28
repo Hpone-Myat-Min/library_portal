@@ -12,9 +12,28 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         try {
+            const res = await fetch(`https://api2.isbndb.com/book/${isbn}`, {
+                method: "GET",
+                headers: {
+                    "Authorization": "61040_9b1212b09eb328addd71fce1fedd3ee4"
+                }
+            });
+
+            if (!res.ok) {
+                throw new Error("Book not found or error fetching details.");
+            }
+
+            const data = await res.json();
+            const book = data.book;
+
             document.getElementById("isbn").value = isbn;
+            document.getElementById("title").value = book.title || "";
+            document.getElementById("author").value = book.authors ? book.authors[0] : "";
+            document.getElementById("year").value = book.date_published || "";
+
             detailsForm.style.display = "block";
             isbnForm.style.display = "none";
+
         } catch (error) {
             console.error(error);
             document.getElementById("message").textContent = "Failed to fetch book details.";
