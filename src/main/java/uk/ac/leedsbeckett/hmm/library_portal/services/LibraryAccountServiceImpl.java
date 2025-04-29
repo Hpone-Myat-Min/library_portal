@@ -37,7 +37,7 @@ public class LibraryAccountServiceImpl implements LibraryAccountService{
         LibraryAccount newAccount = new LibraryAccount();
         newAccount.setStudentId(libraryAccount.getStudentId());
         newAccount.setPin("000000");
-        newAccount.setUpdated(false);
+//        newAccount.setUpdated(false);
         return libraryAccountRepository.save(newAccount);
     }
 
@@ -50,7 +50,7 @@ public class LibraryAccountServiceImpl implements LibraryAccountService{
         }
 
         currentAccount.setPin(updatedAccount.getPin());
-        currentAccount.setUpdated(true);
+//        currentAccount.setUpdated(true);
         return libraryAccountRepository.save(currentAccount);
     }
 

@@ -7,6 +7,8 @@ services:
   librarydb:
     image: mariadb:10.11
     #    image: mariadb
+    volumes:
+      - ./migrations/library-data.sql:/docker-entrypoint-initdb.d/library-data.sql
     restart: always
     environment:
       MYSQL_DATABASE: ${DB_NAME}
@@ -19,10 +21,15 @@ services:
       - default
 
     healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "--password=${DB_ROOT_PASSWORD}" ]
-      interval: 5s
+      test: "/usr/bin/mysql --user=root --password=${DB_ROOT_PASSWORD} --execute \"SHOW DATABASES;\""
+      timeout: 2s
       retries: 10
-      start_period: 10s
+
+#    healthcheck:
+#      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "--password=${DB_ROOT_PASSWORD}" ]
+#      interval: 5s
+#      retries: 10
+#      start_period: 10s
 
   libraryportal:
     build:
@@ -39,7 +46,8 @@ services:
 
 
     depends_on:
-      - librarydb
+      librarydb:
+        condition: service_healthy
 
     networks:
       - default

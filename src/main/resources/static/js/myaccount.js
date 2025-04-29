@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             const difference = today - dueDate;
             let overdueDays = 0;
 
-            if (!eachTransaction.dueDate && today > dueDate) {
+            if (today > dueDate) {
                 overdueDays = Math.floor(difference / (1000 * 60 * 60 * 24));
             }
 
