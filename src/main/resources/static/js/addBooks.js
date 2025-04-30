@@ -25,11 +25,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const data = await res.json();
             const book = data.book;
+            const date = new Date(book.date_published).getFullYear();
 
             document.getElementById("isbn").value = isbn;
             document.getElementById("title").value = book.title || "";
             document.getElementById("author").value = book.authors ? book.authors[0] : "";
-            document.getElementById("year").value = book.date_published || "";
+            document.getElementById("year").value = date || "";
 
             detailsForm.style.display = "block";
             isbnForm.style.display = "none";
