@@ -36,11 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const message = `You have borrowed ${transaction.book.title} until ${transaction.dueDate}`;
             localStorage.setItem("message", message);
 
-            // localStorage.setItem("borrowIsbn", isbn);
             window.location.href = "myaccount.html"
-
-            // document.getElementById("message").textContent = "Book borrowed successfully!";
-            // document.getElementById("borrowForm").reset();
 
         } catch (error) {
             console.error(error);
