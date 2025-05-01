@@ -10,6 +10,7 @@ import java.time.LocalDate;
 @JsonIgnoreProperties(ignoreUnknown = true)
 
 public class Fine {
+    // Data Transfer Object to map Invoice return from Finance Portal as Library Fine
 
     private Double amount;
     private String reference;

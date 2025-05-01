@@ -50,7 +50,6 @@ public class LibraryAccountServiceImpl implements LibraryAccountService{
         }
 
         currentAccount.setPin(updatedAccount.getPin());
-//        currentAccount.setUpdated(true);
         return libraryAccountRepository.save(currentAccount);
     }
 

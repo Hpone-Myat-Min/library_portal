@@ -3,6 +3,7 @@ import lombok.Data;
 
 @Data
 public class StudentSummary {
+    // Class to simplify representing loans and overdues in Admin Portal
 
     private int totalLoans;
     private int totalOverdues;

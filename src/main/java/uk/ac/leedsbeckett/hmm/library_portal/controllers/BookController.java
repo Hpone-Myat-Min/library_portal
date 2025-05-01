@@ -15,6 +15,7 @@ public class BookController {
     private final BookService bookService;
 
     public BookController(BookService bookService) {
+        // Constructor Injection
         this.bookService = bookService;
     }
 
@@ -29,17 +30,5 @@ public class BookController {
         List<Book> bookList = bookService.getBooks();
         return new ResponseEntity<>( bookList,HttpStatus.OK);
     }
-
-//    @PutMapping("/borrow/{bookIsbn}")
-//    public ResponseEntity<Boolean> borrowBook(@PathVariable String bookIsbn) {
-//        Boolean hasBorrowedBook = bookService.borrowBook(bookIsbn);
-//        return new ResponseEntity<>( hasBorrowedBook,HttpStatus.OK);
-//    }
-//
-//    @PutMapping("/return/{bookIsbn}")
-//    public ResponseEntity<Boolean> returnBook(@PathVariable String bookIsbn) {
-//        Boolean hasReturnedBook = bookService.returnBook(bookIsbn);
-//        return new ResponseEntity<>( hasReturnedBook,HttpStatus.OK);
-//    }
 
 }

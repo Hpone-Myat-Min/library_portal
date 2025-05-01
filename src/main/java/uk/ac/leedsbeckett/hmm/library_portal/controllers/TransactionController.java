@@ -12,10 +12,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/history")
 public class TransactionController {
+    // Represent the borrowing transactions in library portal
 
     private final TransactionService transactionService;
 
     public TransactionController(TransactionService transactionService) {
+        // Constructor Injection
         this.transactionService = transactionService;
     }
 

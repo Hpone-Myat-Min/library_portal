@@ -7,6 +7,7 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 
 public class FinanceAccount {
+    // Finance account Data Transfer Object to Map response from Finance API
 
     private String studentId;
 

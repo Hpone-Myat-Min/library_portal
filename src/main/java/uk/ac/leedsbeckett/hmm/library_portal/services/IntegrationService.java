@@ -7,6 +7,7 @@ import uk.ac.leedsbeckett.hmm.library_portal.entities.Fine;
 
 @Component
 public class IntegrationService {
+    // To call other APIs
 
     private final RestTemplate restTemplate;
 
@@ -19,6 +20,7 @@ public class IntegrationService {
     }
 
     public Fine createLibraryFineInvoice(Fine fine ) {
+        // Issue Library Fine when return late
         return restTemplate.postForObject("http://localhost:8081/invoices/", fine, Fine.class);
     }
 

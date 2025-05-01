@@ -25,6 +25,7 @@ public class AdminController {
     private final BookService bookService;
 
     public AdminController(TransactionService transactionService, LibraryAccountService libraryAccountService, BookService bookService) {
+        // Constructor Injection
         this.transactionService = transactionService;
         this.libraryAccountService = libraryAccountService;
         this.bookService = bookService;
@@ -32,11 +33,11 @@ public class AdminController {
 
     @GetMapping("/transactions")
     public ResponseEntity<Map<String, StudentSummary>> getStudentsOverview() {
-        // For each student: id, number of current loans, number of overdues
         List<Transaction> transactions = transactionService.getAllTransactions();
 
         Map<String, StudentSummary> studentTransactions = new HashMap<>();
 
+        // Calculating number of loans and overdues for each student
         for( Transaction t : transactions ) {
             String studentId = t.getStudentId();
             studentTransactions.putIfAbsent(studentId, new StudentSummary(0, 0));

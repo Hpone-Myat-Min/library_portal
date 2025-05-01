@@ -12,6 +12,7 @@ import java.time.LocalDate;
 @Data
 @Entity
 public class Transaction {
+    // Represent borrowing and returning transactions
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +21,6 @@ public class Transaction {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "book_isbn")
     @EqualsAndHashCode.Exclude
-//    @JsonIgnore
     @ToString.Exclude
     private Book book;
 

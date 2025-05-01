@@ -16,6 +16,4 @@ public class LibraryAccount {
 
     private String pin;
 
-//    private boolean isUpdated;     // check if the user first login/ not
-
 }

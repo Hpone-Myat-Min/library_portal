@@ -25,34 +25,4 @@ public class BookServiceImpl implements BookService{
         return bookRepository.findAll();
     }
 
-//    @Override
-//    public Boolean borrowBook(String bookIsbn) {
-//
-//        Book book = bookRepository.findById(bookIsbn).orElse(null);
-//        if (book == null) {
-//            throw new RuntimeException("Book not found with ISBN " + bookIsbn);
-//        }
-//
-//        if(book.getCopies() == 0){
-//            return false;
-//        }
-//
-//        book.setCopies(book.getCopies() - 1);
-//        bookRepository.save(book);
-//        return true;
-//    }
-
-//    @Override
-//    public Boolean returnBook(String bookIsbn) {
-//        Book book = bookRepository.findById(bookIsbn).orElse(null);
-//        if (book == null) {
-//            throw new RuntimeException("Book not found with ISBN " + bookIsbn);
-//        }
-//
-//        book.setCopies(book.getCopies() + 1);
-//        bookRepository.save(book);
-//        return true;
-//    }
-//
-
 }
