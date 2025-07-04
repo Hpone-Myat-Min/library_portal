@@ -27,7 +27,7 @@ This microservice communicates with:
    ``git clone https://github.com/Hpone-Myat-Min/library_portal.git
    cd student-portal``
 2. Create .env File
-   Create a .env file at the project root:
+   at the project root:
 ```angular2html
 DB_Name=
 DB_APPLICATION_USER=
